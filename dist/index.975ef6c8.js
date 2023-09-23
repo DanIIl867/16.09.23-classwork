@@ -503,6 +503,17 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"8lqZg":[function(require,module,exports) {
+const validJSON = '{"name": "Mango", "age": 3}';
+const invalidJSON = "{eror}";
+function checkValid(obj) {
+    try {
+        return JSON.parse(obj);
+    } catch (error) {
+        console.log("eror");
+    }
+}
+checkValid(validJSON);
+checkValid(invalidJSON);
 
 },{}]},["1RB6v","8lqZg"], "8lqZg", "parcelRequire5c52")
 
