@@ -13,13 +13,13 @@
     "url": "git+https://github.com/DanIIl867/16.09.23-classwork.git"
   },
   "keywords": [],
-  "author": "Alexander Repeta <alexander.repeta@gmail.com>",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/DanIIl867/16.09.23-classwork/issues"
   },
   "dependencies": {
-    "json-server": "^0.17.3",
+    "json-server": "^0.17.4",
     "modern-normalize": "^1.1.0",
     "parcel-transformer-hbs": "^1.0.4"
   },
