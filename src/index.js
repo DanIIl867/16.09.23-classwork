@@ -1,4 +1,6 @@
-// import postTpl from
+import axios from 'axios';
+import postTpl from './postTpl.handlebars';
+
 
 // function getFruit(name) {
 
@@ -44,10 +46,12 @@
 
 const BASE_URL = 'http://localhost:3000/posts'
 
+const formEl =  document.getElementById('createPostForm')
+
 async function getPosts() {
 
     try {
-        const posts = await fetch(BASE_URL)
+        const posts = await axios.get(BASE_URL)
         return await posts.json()
     } catch (error) {
     
@@ -58,17 +62,16 @@ async function getPosts() {
     
     // Створення нового поста
     
-    async function createPost(title, content) {
-    
+    async function createPost(title, text) {
     try {
-    
-    } catch (error) {
-    
+      const newPost = await axios.post(BASE_URL, {
+        title,
+        text,
+      })
+    } 
+    catch (error) {
     console.error(error);
-    
-    }
-    
-    }
+    }}
     
     // Оновлення поста
     
@@ -120,19 +123,37 @@ async function getPosts() {
     
     // Обробник події для створення поста
     
-    document.getElementById('createPostForm').addEventListener('submit', cb);
+   formEl.addEventListener('submit', async(event)=>{
+    event.preventDefault()
+      const title = event.currentTarget.elements.title.value
+      const text = event.currentTarget.elements.title.value
+    await createPost(title, text)
+    const posts = await getPosts();
+    renderPosts(posts);
+   });
+
+   refs.postContainer.addEventListener('click',async(event)=>{
+    event.preventDefault()
+    if(event.target.classList.contains('deletePostButton')){
+      const id = event.target.getAttribute('data-id')
+      event.preventDefault()
+      await deletePost(id)
+      const posts = await getPosts();
+      renderPosts(posts);
+    }
+   })
     
     // Обробник події для редагування поста
     
-    document.addEventListener('click', cb);
+    // document.addEventListener('click', cb);
     
     // Обробник події для видалення поста
     
-    document.addEventListener('click', cb);
+    // document.addEventListener('click', cb);
     
     // Обробник події для додавання коментаря
     
-    document.addEventListener('submit', cb);
+    // document.addEventListener('submit', cb);
     
     // Запуск додатку
     
